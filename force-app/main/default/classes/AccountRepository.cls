@@ -1,4 +1,4 @@
-public without sharing class AccountRepository {
+public virtual without sharing class AccountRepository {
 
     public virtual List<Account> getAccountsByIds(List<Id> accountIds) {
         return [

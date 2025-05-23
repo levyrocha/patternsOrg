@@ -21,7 +21,11 @@ public without sharing class AccountTriggerHandler extends TriggerHandler {
         this.oldAccountsById = (Map<Id, Account>) Trigger.oldMap;
     }
 
-    public override void beforeInsert(){}
+    public override void beforeInsert(){
+        //example1Service.execute();
+        //example2Service.execute();
+        //exampleNService.execute();
+    }
 
     public override void beforeUpdate(){}
 
