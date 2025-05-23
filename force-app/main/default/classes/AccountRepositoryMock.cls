@@ -1,6 +1,6 @@
 @isTest
 public with sharing class AccountRepositoryMock extends AccountRepository {
-    
+
     String payload;
 
     public AccountRepositoryMock(){}
@@ -12,4 +12,9 @@ public with sharing class AccountRepositoryMock extends AccountRepository {
     override public List<Account> getAccountsByIds(List<Id> accountIds) {
         return (List<Account>) AccountFactory.fromJsonArray(payload);
     }
+
+    override public SObject save(SObject aggregates) {
+        return aggregates;
+    }
+
 }
