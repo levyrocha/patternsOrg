@@ -1,5 +1,5 @@
 @isTest
-private class ExampleObjectTriggerHandlerTest {
+private class AccountTriggerHandlerTest {
 
     @isTest
     static void myUnitTest() {}
