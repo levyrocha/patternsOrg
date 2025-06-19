@@ -30,7 +30,7 @@ public class ListsTest {
 
         Test.startTest();
 
-        List<String> names = Lists.byField( accounts, Account.class, 'Name' );
+        List<String> names = Lists.byField( accounts, 'Name' );
 
         Test.stopTest();
 
@@ -44,7 +44,7 @@ public class ListsTest {
 
         Test.startTest();
 
-        List<String> values = Lists.byField( records, Account.class, 'BillingState' );
+        List<String> values = Lists.byField( records, 'BillingState' );
 
         Test.stopTest();
 
