@@ -1,33 +1,27 @@
 @isTest
 public with sharing class AccountFactory {
 
-	public static Account newAccount(String name) {
-        return new Account(
-            Name = name
-        );
+    public static Account newStandardAccount() {
+        Account account = new Account();
+        account.Name = 'Standard Account';
+        return account;
     }
 
-    public static List<Account> createAccount(Account account) {
+    public static Account provideStandardAccount() {
+        return provideStandardAccountsByQuantity(1)[0];
+    }
+
+    public static List<Account> provideStandardAccountsByQuantity(Integer numberOfAccounts) {
         List<Account> accounts = new List<Account>();
+
+        for(Integer i = 1; i <= numberOfAccounts; i++) {
+            Account account = newStandardAccount();
+            account.name = account.name + ' ' + String.valueOf(i);
         accounts.add(account);
-        return createAccounts(accounts);
     }
 
-    public static List<Account> createAccounts(List<Account> accounts) {
         insert accounts;
         return accounts;
-    }
-
-    public static List<Account> provideAccountsByQuantity(Integer quantity) {
-        List<Account> accounts = new List<Account>();
-
-        for(Integer i = 1; i <= quantity; i++) {
-            String name = 'Account' + String.valueOf(i);
-            Account account = newAccount(name);
-            accounts.add(account);
-        }
-
-        return createAccounts(accounts);
     }
 
     public static Account fromJson ( String payload ) {

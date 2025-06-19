@@ -21,7 +21,7 @@ public with sharing class Lists {
         return fieldsValues;
     }
 
-    public static List<String> byFields ( List<Object> records, Type objectType, List<String> fields ) {
+    public static List<String> byFields ( List<Object> records, List<String> fields ) {
 
         if ( isEmpty(records) || isEmpty(fields) ) return new List<String>();
 
@@ -67,6 +67,30 @@ public with sharing class Lists {
         return compositeKeys;
     }
 
+    public static List<String> byCompositeKey ( List<Object> records, List<String> keys, String splitValue ) {
+
+        if( Lists.isEmpty(records) || Lists.isEmpty(keys) ) return new List<String>();  
+
+        List<String> compositeKeys = new List<String>();
+        
+        for (Object record : records) {
+            List<String> keyParts = new List<String>();
+            CObject coreRecord = new CObject(record);
+            
+            for (String key : keys) {
+                if ( !coreRecord.containsKey( key ) ) continue;
+
+                if ( coreRecord.get(key) == null ) continue;
+
+                keyParts.add( '' + coreRecord.get(key) );
+            }
+        
+            compositeKeys.add(String.join(keyParts, splitValue));
+        }
+        
+        return compositeKeys;
+    }
+
     private static String getFieldValue( SObject record, String field ) {
 
         List<String> splitedField = field.split('\\.');
@@ -86,8 +110,8 @@ public with sharing class Lists {
 
     }
 
-    public static List<String> byField( List<Object> records, Type objectType, String field ) {
-        return byFields( records, objectType, new List<String>{ field } );
+    public static List<String> byField( List<Object> records, String field ) {
+        return byFields( records, new List<String>{ field } );
     }
 
     public static List<String> byField( List<SObject> records, String field ) {

@@ -3,7 +3,7 @@ private class AccountRepositoryTest {
 
     @isTest
     static void itShouldReturnAccountsByIds(){
-        List<Account> accounts = AccountFactory.provideAccountsByQuantity(2);
+        List<Account> accounts = AccountFactory.provideStandardAccountsByQuantity(2);
 
         List<Id> accountIds = Lists.byField(accounts, 'Id');
 
