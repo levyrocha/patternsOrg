@@ -17,8 +17,8 @@ public with sharing class AccountFactory {
         for(Integer i = 1; i <= numberOfAccounts; i++) {
             Account account = newStandardAccount();
             account.name = account.name + ' ' + String.valueOf(i);
-        accounts.add(account);
-    }
+            accounts.add(account);
+        }
 
         insert accounts;
         return accounts;
