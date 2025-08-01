@@ -9,7 +9,7 @@ public without sharing class CNPJCallout {
         request.setEndpoint(endpoint);
         request.setMethod('GET');
         request.setHeader('Content-Type', 'application/json');
-        request.setTimeout(40001);
+        request.setTimeout(2000);
 
         Http http = new Http();
 
