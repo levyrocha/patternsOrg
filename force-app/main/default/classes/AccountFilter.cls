@@ -1,4 +1,4 @@
-public with sharing class AccountFilter {
+public without sharing class AccountFilter {
     public AccountFilter() {
 
     }

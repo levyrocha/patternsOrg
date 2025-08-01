@@ -1,4 +1,4 @@
-public without sharing class AccountTriggerHandler extends TriggerHandler {
+public without sharing class AccountHandler extends TriggerHandler {
 
     private Example1Service example1Service;
     //private Example2Service example2Service;
@@ -10,7 +10,7 @@ public without sharing class AccountTriggerHandler extends TriggerHandler {
     private List<Account> oldAccounts;
     private Map<Id, Account> oldAccountsById;
 
-    public AccountTriggerHandler() {    
+    public AccountHandler() {    
         this.example1Service = new Example1Service();
 
         this.newAccounts = (List<Account>) Trigger.new;

@@ -1,5 +1,5 @@
 @isTest
-public with sharing class AccountFactory {
+public without sharing class AccountFactory {
 
     public static Account newStandardAccount() {
         Account account = new Account();

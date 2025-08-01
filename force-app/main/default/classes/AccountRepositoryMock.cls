@@ -1,5 +1,5 @@
 @isTest
-public with sharing class AccountRepositoryMock extends AccountRepository {
+public without sharing class AccountRepositoryMock extends AccountRepository {
 
     String payload;
 

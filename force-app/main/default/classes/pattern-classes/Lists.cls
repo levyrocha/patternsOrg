@@ -1,4 +1,4 @@
-public with sharing class Lists {
+public without sharing class Lists {
 
     public static List<String> byFields ( List<SObject> records, List<String> fields ) {
 

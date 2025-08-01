@@ -11,12 +11,11 @@ private class AccountRepositoryTest {
         
         Test.startTest();
 
-        List<Account> result = accountRepository.getAccountsByIds(accountIds);
+        List<Account> results = accountRepository.getAccountsByIds(accountIds);
 
         Test.stopTest();
 
-        Assert.isNotNull(result);
-        Assert.isTrue(result.size() == 2, 'Should be contains two records');
+        Assert.isFalse(results.isEmpty(), 'Results can not be empty');
+        Assert.areEqual(2, results.size(), 'Results size should be 2');
     }
-
 }
