@@ -13,17 +13,17 @@ public without sharing class ApexLimitExamples {
         String cnpj = '00000000000191';
 
         String endpoint = 'https://publica.cnpj.ws/cnpj/' + cnpj;
-        
-        HttpRequest request = new HttpRequest();
-
-        request.setEndpoint(endpoint);
-        request.setMethod('GET');
-        request.setHeader('Content-Type', 'application/json');
-        request.setTimeout(2000);
-
-        Http http = new Http();
 
         for(Integer i = 1 ; i <= 101 ; i++) {
+            HttpRequest request = new HttpRequest();
+
+            request.setEndpoint(endpoint);
+            request.setMethod('GET');
+            request.setHeader('Content-Type', 'application/json');
+            request.setTimeout(2000);
+    
+            Http http = new Http();
+            
             HttpResponse response = http.send(request);
     
             String body = response.getBody();
