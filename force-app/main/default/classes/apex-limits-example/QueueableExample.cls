@@ -1,18 +1,18 @@
 public class QueueableExample implements Queueable {
 
-    String typeTestQueueable;
+    QueueableExample.ExampleQueueableType exampleQueueableType;
 
-    public QueueableExample(String typeTestQueueable) {
-        this.typeTestQueueable = typeTestQueueable;
+    public QueueableExample(QueueableExample.ExampleQueueableType exampleQueueableType) {
+        this.exampleQueueableType = exampleQueueableType;
     }
 
-
     public void execute(QueueableContext context) {
+
         if(this.isSync()) System.debug('AccountQueueable');
 
         if(this.isAsync()) {
-            System.enqueueJob(new QueueableExample('Async'));
-            System.enqueueJob(new QueueableExample('Async'));
+            System.enqueueJob(new QueueableExample(this.exampleQueueableType));
+            System.enqueueJob(new QueueableExample(this.exampleQueueableType));
         }
 
         if(this.isTimeLimitExecution()) {
@@ -32,14 +32,20 @@ public class QueueableExample implements Queueable {
     }
 
     private Boolean isSync() {
-        return this.typeTestQueueable == 'Sync' ? true : false;
+        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.SYNC;
     }
 
     private Boolean isAsync() {
-        return this.typeTestQueueable == 'Async' ? true : false;
+        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.ASYNC;
     }
 
     private Boolean isTimeLimitExecution() {
-        return this.typeTestQueueable == 'TimeLimitExecution' ? true : false;
+        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.TIME_LIMIT_EXECUTION;
+    }
+
+    public enum ExampleQueueableType {
+        SYNC, 
+        ASYNC, 
+        TIME_LIMIT_EXECUTION
     }
 }
