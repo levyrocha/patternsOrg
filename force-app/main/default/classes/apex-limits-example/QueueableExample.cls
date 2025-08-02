@@ -1,8 +1,8 @@
 public class QueueableExample implements Queueable {
 
-    QueueableExample.ExampleQueueableType exampleQueueableType;
+    ExampleQueueableTypes exampleQueueableType;
 
-    public QueueableExample(QueueableExample.ExampleQueueableType exampleQueueableType) {
+    public QueueableExample(ExampleQueueableTypes exampleQueueableType) {
         this.exampleQueueableType = exampleQueueableType;
     }
 
@@ -32,20 +32,15 @@ public class QueueableExample implements Queueable {
     }
 
     private Boolean isSync() {
-        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.SYNC;
+        return this.exampleQueueableType.name() == ExampleQueueableTypes.SYNC.name();
     }
 
     private Boolean isAsync() {
-        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.ASYNC;
+        return this.exampleQueueableType.name() == ExampleQueueableTypes.ASYNC.name();
     }
 
     private Boolean isTimeLimitExecution() {
-        return this.exampleQueueableType == QueueableExample.ExampleQueueableType.TIME_LIMIT_EXECUTION;
+        return this.exampleQueueableType.name() == ExampleQueueableTypes.TIME_LIMIT_EXECUTION.name();
     }
 
-    public enum ExampleQueueableType {
-        SYNC, 
-        ASYNC, 
-        TIME_LIMIT_EXECUTION
-    }
 }

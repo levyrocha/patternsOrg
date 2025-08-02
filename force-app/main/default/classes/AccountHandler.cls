@@ -1,23 +1,13 @@
 public without sharing class AccountHandler extends TriggerHandler {
 
-    private Example1Service example1Service;
+    private AccountTypeValidationService accountTypeValidationService;
+
+    //private Example1Service example1Service;
     //private Example2Service example2Service;
     //private ExampleNService exampleNService;
-    
-    private List<Account> newAccounts;
-    private Map<Id, Account> newAccountsById;
-
-    private List<Account> oldAccounts;
-    private Map<Id, Account> oldAccountsById;
 
     public AccountHandler() {    
-        this.example1Service = new Example1Service();
-
-        this.newAccounts = (List<Account>) Trigger.new;
-        this.newAccountsById = (Map<Id, Account>) Trigger.newMap;
-
-        this.oldAccounts = (List<Account>) Trigger.old;
-        this.oldAccountsById = (Map<Id, Account>) Trigger.oldMap;
+        this.accountTypeValidationService = new AccountTypeValidationService();
     }
 
     public override void beforeInsert(){
@@ -26,7 +16,9 @@ public without sharing class AccountHandler extends TriggerHandler {
         //exampleNService.execute();
     }
 
-    public override void beforeUpdate(){}
+    public override void beforeUpdate(){
+        this.accountTypeValidationService.execute();
+    }
 
     public override void beforeDelete(){}
 

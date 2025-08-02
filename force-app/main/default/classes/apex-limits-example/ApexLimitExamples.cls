@@ -63,17 +63,17 @@ public without sharing class ApexLimitExamples {
     //Maximum number of Apex jobs added to the queue with System.enqueueJob Sync
     public void maximumNumberOfApexJobsAddedToTheQueueWithSystemEnqueueJobSync() {
         for(Integer i = 1 ; i <= 51 ; i++) {
-            System.enqueueJob(new QueueableExample(QueueableExample.ExampleQueueableType.SYNC));
+            System.enqueueJob(new QueueableExample(ExampleQueueableTypes.SYNC));
         }
     }
 
     //Maximum number of Apex jobs added to the queue with System.enqueueJob Async
     public void maximumNumberOfApexJobsAddedToTheQueueWithSystemEnqueueJobAsync() {
-        System.enqueueJob(new QueueableExample(QueueableExample.ExampleQueueableType.ASYNC));
+        System.enqueueJob(new QueueableExample(ExampleQueueableTypes.ASYNC));
     }
 
     //Maximum execution time for each Apex transaction
     public void maximumExecutionTimeForEachApexTransaction() {
-        System.enqueueJob(new QueueableExample(QueueableExample.ExampleQueueableType.TIME_LIMIT_EXECUTION));
+        System.enqueueJob(new QueueableExample(ExampleQueueableTypes.TIME_LIMIT_EXECUTION));
     }
 }

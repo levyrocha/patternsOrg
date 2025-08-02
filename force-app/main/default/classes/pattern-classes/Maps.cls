@@ -164,24 +164,15 @@ public without sharing class Maps {
 
         List<String> splitedField = field.split('\\.');
 
-        if( splitedField.size() == 1 ) {
-            return String.valueOf( record.get( field ) );
-        }else if( splitedField.size() == 2 ) {
-            SObject relatedRecord = record.getSObject( splitedField[0] );
+        for ( Integer i = 0; i < splitedField.size(); i++ ) {
 
-            if( relatedRecord == null ) return null;
+            if( i == splitedField.size() - 1 ) {
+                return (String) record.get( splitedField[i] );
+            }
 
-            return (String) relatedRecord.get( splitedField[1] );
-        }else if( splitedField.size() == 3 ) {
-            SObject relatedRecord = record.getSObject( splitedField[0] );
+            record = record.getSObject( splitedField[i] );
 
-            if( relatedRecord == null ) return null;
-
-            relatedRecord = relatedRecord.getSObject( splitedField[1] );
-
-            if( relatedRecord == null ) return null;
-
-            return String.valueOf( relatedRecord.get( splitedField[2] ) );
+            if( record == null ) return null;
         }
 
         return '';

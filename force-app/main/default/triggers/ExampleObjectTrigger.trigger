@@ -1,3 +1,0 @@
-trigger ExampleObjectTrigger on ExampleObject__c (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
-    new ExampleObjectTriggerHandler().run();
-}
