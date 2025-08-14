@@ -1,76 +1,82 @@
-public with sharing class AccountTypeValidationService {
+public without sharing class AccountTypeValidationService {
 
-    private List<Account> newAccounts;
-    private Map<Id, Account> newAccountsById;
+    public List<Account> newAccounts;
+    public Map<Id, Account> newAccountsById;
+    public List<Account> oldAccounts;
+    public Map<Id, Account> oldAccountsById;
+    
+    public OpportunityRepository opportunityRepository;
+    public AccountFilter accountFilter;
 
-    private List<Account> oldAccounts;
-    private Map<Id, Account> oldAccountsById;
+    public List<Account> accountsToPerform;
+    public List<Opportunity> opportunitiesToPerform;
 
-    private OpportunityRepository opportunityRepository;
-
-    private AccountFilter accountFilter;
-
-    Map<String, List<SObject>> result;
+    public Map<String, List<SObject>> result;
 
     public AccountTypeValidationService() {
         this.newAccounts = (List<Account>) Trigger.new;
         this.newAccountsById = (Map<Id, Account>) Trigger.newMap;
-
         this.oldAccounts = (List<Account>) Trigger.old;
         this.oldAccountsById = (Map<Id, Account>) Trigger.oldMap;
 
+        this.accountFilter = new AccountFilter();
         this.opportunityRepository = new OpportunityRepository();
 
-        this.accountFilter = new AccountFilter();
-
+        this.accountsToPerform = new List<Account>();
+        this.opportunitiesToPerform = new List<Opportunity>();
                 
         this.result = new Map<String, List<SObject>>();
     }
 
-    public Map<String, List<SObject>> execute() {
-        List<Account> accounts = this.filterByChangeType();
-
-        if(accounts.isEmpty()) return this.result;
-
-        List<String> accountIds = Lists.byField(accounts, 'Id');
-
-        List<Opportunity> opportunities = this.getOpportunitiesProspectingByAccountIds(accountIds);
-
-        if(opportunities.isEmpty()) return this.result;
-
-        Map<String, List<Opportunity>> opportunitiesByAccountId = this.buildOpportunitiesByAccountId(opportunities);
-
-        for(String accountId : opportunitiesByAccountId.keySet()){
-            List<Opportunity> opportunitiesOnMap = opportunitiesByAccountId.get(accountId);
-            
-            if(opportunitiesOnMap.isEmpty()) continue;
-
-            Account account = newAccountsById.get(accountId);
-            this.buildResult('account',account);
-            account.addError('Ei pode não má');
-        }
-        
+    public Map<String,List<SObject>> execute() {
+        if(this.notHasAccountsToPerform()) return this.result;
+        if(this.notHasOpportunitiesToPerform()) return this.result;
+        this.performCheckingHasOpportunitiesWithStatusNotAllowed();        
         return this.result;
     }
 
+    public Boolean notHasAccountsToPerform() {
+        this.accountsToPerform = this.filterByChangeType();
+        return this.accountsToPerform.isEmpty();
+    }
 
     public List<Account> filterByChangeType() {
         return this.accountFilter.filterByChangeType(this.newAccounts, this.oldAccountsById);
     }
 
-    public List<Opportunity> getOpportunitiesProspectingByAccountIds(List<String> accountIds) {
-        return this.opportunityRepository.getOpportunitiesProspectingByAccountIds(accountIds);
+    public Boolean notHasOpportunitiesToPerform() {
+        this.opportunitiesToPerform = this.getOpportunitiesWithStatusNotAllowedByAccountIds(this.getAccountIdsToPerform());
+        return this.opportunitiesToPerform.isEmpty();
     }
 
-    public Map<String, List<Opportunity>> buildOpportunitiesByAccountId(List<Opportunity> opportunities) {
-        return (Map<String, List<Opportunity>>) Maps.groupBy('AccountId', opportunities);
+    public List<Opportunity> getOpportunitiesWithStatusNotAllowedByAccountIds(List<String> accountIds) {
+        List<Opportunity> opportunities = this.opportunityRepository.getOpportunitiesWithStatusNotAllowedByAccountIds(accountIds);
+        return opportunities;
     }
 
-    private void buildResult(String sobjectName, SObject sobjectRecord) {
-        this.result.put(sobjectName, new List<SObject>{sobjectRecord});
+    public List<String> getAccountIdsToPerform() {
+        return Lists.byField(this.accountsToPerform, 'Id');
     }
 
-    public Boolean isProspecting(Opportunity opportunity) {
-        return opportunity.StageName == 'Prospecting';
+    public void performCheckingHasOpportunitiesWithStatusNotAllowed() {
+        Map<String, List<Opportunity>> opportunitiesByAccountIdToPerform = (Map<String, List<Opportunity>>) Maps.groupBy('AccountId', this.opportunitiesToPerform);
+
+        for(String accountId : opportunitiesByAccountIdToPerform.keySet()){
+            if(this.isAccountWithoutOpportunitiesWithStatusNotAllowed(opportunitiesByAccountIdToPerform.get(accountId))) continue;
+            this.addAccountError(this.newAccountsById.get(accountId));
+        }
+    }
+
+    public Boolean isAccountWithoutOpportunitiesWithStatusNotAllowed(List<Opportunity> opportunities) {
+        return opportunities.isEmpty();
+    }
+
+    public void addAccountError(Account account) {
+        this.result.put('account', new List<Account>{account});
+        account.addError('Não é possível atualizar o tipo, pois essa conta possui opportunidades pendentes');
+    }
+
+    public void setOpportunityRepository( OpportunityRepository opportunityRepositoryMock) {
+        this.opportunityRepository = opportunityRepositoryMock;
     }
 }

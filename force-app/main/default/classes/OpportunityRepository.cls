@@ -1,7 +1,7 @@
-public with sharing class OpportunityRepository extends AbstractRepository {
+public virtual class OpportunityRepository extends AbstractRepository {
     public OpportunityRepository() {}
 
-    public virtual List<Opportunity> getOpportunitiesProspectingByAccountIds(List<String> accountIds) {
+    public virtual List<Opportunity> getOpportunitiesWithStatusNotAllowedByAccountIds(List<String> accountIds) {
         return [
             SELECT
                 Id
