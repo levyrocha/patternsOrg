@@ -2,6 +2,10 @@ public without sharing class AccountBuilder {
 
     public Account account = new Account();
 
+    public AccountBuilder(Account account) {
+        this.account = account;
+    }
+
     public AccountBuilder withId(Id id) {
         this.account.Id = id;
         return this;

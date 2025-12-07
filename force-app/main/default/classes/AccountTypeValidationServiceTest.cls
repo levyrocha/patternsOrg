@@ -186,4 +186,26 @@ private class AccountTypeValidationServiceTest {
         Assert.areEqual(1, result.size());
     }
 
+    @isTest
+    static void itShouldBeReturnErrorOnAccountRecord() {
+        List<String> accountFakeIds = FixtureFactory.generateFakeIds18(Account.getSObjectType(), 1);
+        
+        String accountToPerformPayload = '{"Id":"'+accountFakeIds[0]+'"}';
+
+        Account accountToPerform = AccountFactory.fromJson(accountToPerformPayload);
+
+        AccountTypeValidationService accountTypeValidationService = new AccountTypeValidationService();
+
+        Test.startTest();
+
+        accountTypeValidationService.addAccountError(accountToPerform);
+
+        Test.stopTest();
+
+        List<Database.Error> errors = accountToPerform.getErrors();
+
+        Assert.areEqual(1, errors.size(), 'Should be contains 1 error');
+        Assert.areEqual('Não é possível atualizar o tipo, pois essa conta possui opportunidades pendentes', errors[0].getMessage(),'Should be correct error message');
+    }
+
 }

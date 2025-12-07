@@ -11,8 +11,6 @@ public without sharing class AccountTypeValidationService {
     public List<Account> accountsToPerform;
     public List<Opportunity> opportunitiesToPerform;
 
-    public Map<String, List<SObject>> result;
-
     public AccountTypeValidationService() {
         this.newAccounts = (List<Account>) Trigger.new;
         this.newAccountsById = (Map<Id, Account>) Trigger.newMap;
@@ -24,15 +22,12 @@ public without sharing class AccountTypeValidationService {
 
         this.accountsToPerform = new List<Account>();
         this.opportunitiesToPerform = new List<Opportunity>();
-                
-        this.result = new Map<String, List<SObject>>();
     }
 
-    public Map<String,List<SObject>> execute() {
-        if(this.notHasAccountsToPerform()) return this.result;
-        if(this.notHasOpportunitiesToPerform()) return this.result;
+    public void execute() {
+        if(this.notHasAccountsToPerform()) return;
+        if(this.notHasOpportunitiesToPerform()) return;
         this.performCheckingHasOpportunitiesWithStatusNotAllowed();        
-        return this.result;
     }
 
     public Boolean notHasAccountsToPerform() {
@@ -72,7 +67,6 @@ public without sharing class AccountTypeValidationService {
     }
 
     public void addAccountError(Account account) {
-        this.result.put('account', new List<Account>{account});
         account.addError('Não é possível atualizar o tipo, pois essa conta possui opportunidades pendentes');
     }
 

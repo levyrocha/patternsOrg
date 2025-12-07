@@ -2,20 +2,20 @@
 private class AccountEnricherTest {
 
     @isTest
-    private static void itShouldReturnEntichedAccountWithCNPJInfos() {
-
-        String cnpjInfoPayload = '{"estabelecimento":{"nome_fantasia": "Nome Fantasia Teste"}}';
-
-        CNPJWrapper cnpjInfo = CNPJWrapper.fromJson(cnpjInfoPayload);
+    private static void itShouldReturnEntichedAccountWithInitialInfo() {
 
         AccountEnricher accountEnricher = new AccountEnricher();
 
+        Account account = new Account();
+        account.CNPJ__c = '123';
+
         Test.startTest();
         
-        Account result = accountEnricher.enrichAccountWithCNPJInfos(cnpjInfo);
+        Account result = accountEnricher.enrichAccountWithInitialInfo(account);
 
         Test.stopTest();
 
-        Assert.areEqual('Nome Fantasia Teste', result.Name, 'Name should be Nome Fantasia Teste');
+        Assert.areEqual('Initial name', result.Name, 'Name should be Initial name');
+        Assert.areEqual('123', result.CNPJ__c, 'CNPJ__c should be 123');
     }
 }

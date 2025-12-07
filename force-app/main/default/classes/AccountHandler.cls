@@ -6,7 +6,8 @@ public without sharing class AccountHandler extends TriggerHandler {
     //private Example2Service example2Service;
     //private ExampleNService exampleNService;
 
-    public AccountHandler() {    
+    public AccountHandler() {
+        if(this.isBypassed()) return;
         this.accountTypeValidationService = new AccountTypeValidationService();
     }
 
@@ -30,4 +31,7 @@ public without sharing class AccountHandler extends TriggerHandler {
 
     public override void afterUndelete(){}
 
+    private Boolean isBypassed() {
+        return TriggerHandler.isBypassed(this.toString().substringBefore(':'));
+    }
 }
