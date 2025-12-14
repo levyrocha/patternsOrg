@@ -1,9 +1,4 @@
-public without sharing class AccountTypeValidationService {
-
-    public List<Account> newAccounts;
-    public Map<Id, Account> newAccountsById;
-    public List<Account> oldAccounts;
-    public Map<Id, Account> oldAccountsById;
+public without sharing class AccountTypeValidationService extends TriggerBase {
     
     public OpportunityRepository opportunityRepository;
     public AccountFilter accountFilter;
@@ -12,11 +7,6 @@ public without sharing class AccountTypeValidationService {
     public List<Opportunity> opportunitiesToPerform;
 
     public AccountTypeValidationService() {
-        this.newAccounts = (List<Account>) Trigger.new;
-        this.newAccountsById = (Map<Id, Account>) Trigger.newMap;
-        this.oldAccounts = (List<Account>) Trigger.old;
-        this.oldAccountsById = (Map<Id, Account>) Trigger.oldMap;
-
         this.accountFilter = new AccountFilter();
         this.opportunityRepository = new OpportunityRepository();
 
@@ -36,7 +26,7 @@ public without sharing class AccountTypeValidationService {
     }
 
     public List<Account> filterByChangeType() {
-        return this.accountFilter.filterByChangeType(this.newAccounts, this.oldAccountsById);
+        return this.accountFilter.filterByChangeType((List<Account>) this.newSObjects, (Map<Id, Account>) this.oldSObjectsById);
     }
 
     public Boolean notHasOpportunitiesToPerform() {
@@ -58,7 +48,7 @@ public without sharing class AccountTypeValidationService {
 
         for(String accountId : opportunitiesByAccountIdToPerform.keySet()) {
             if(this.isAccountWithoutOpportunitiesWithStatusNotAllowed(opportunitiesByAccountIdToPerform.get(accountId))) continue;
-            this.addAccountError(this.newAccountsById.get(accountId));
+            this.addAccountError(((Map<Id, Account>) this.newSObjectsById).get(accountId));
         }
     }
 

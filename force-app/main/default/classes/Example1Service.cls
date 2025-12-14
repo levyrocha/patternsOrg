@@ -1,15 +1,6 @@
-public without sharing class Example1Service {
-    public List<Account> newAccounts;
-    public Map<Id, Account> newAccountsById;
-    public List<Account> oldAccounts;
-    public Map<Id, Account> oldAccountsById;
+public without sharing class Example1Service extends TriggerBase {
 
-    public Example1Service() {
-        this.newAccounts = (List<Account>) Trigger.new;
-        this.newAccountsById = (Map<Id, Account>) Trigger.newMap;
-        this.oldAccounts = (List<Account>) Trigger.old;
-        this.oldAccountsById = (Map<Id, Account>) Trigger.oldMap;
-    }
+    public Example1Service() {}
 
     public void execute() {}
 }

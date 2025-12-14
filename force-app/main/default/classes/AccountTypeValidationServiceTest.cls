@@ -12,8 +12,8 @@ private class AccountTypeValidationServiceTest {
         Map<Id,Account> oldAccountsById = AccountFactory.fromJsonMapId(oldAccountsByIdPayload);
 
         AccountTypeValidationService accountTypeValidationService = new AccountTypeValidationService();
-        accountTypeValidationService.newAccounts = newAccounts;
-        accountTypeValidationService.oldAccountsById = oldAccountsById;
+        accountTypeValidationService.newSObjects = newAccounts;
+        accountTypeValidationService.oldSObjectsById = oldAccountsById;
 
         Test.startTest();
 
@@ -35,8 +35,8 @@ private class AccountTypeValidationServiceTest {
         Map<Id,Account> oldAccountsById = AccountFactory.fromJsonMapId(oldAccountsByIdPayload);
 
         AccountTypeValidationService accountTypeValidationService = new AccountTypeValidationService();
-        accountTypeValidationService.newAccounts = newAccounts;
-        accountTypeValidationService.oldAccountsById = oldAccountsById;
+        accountTypeValidationService.newSObjects = newAccounts;
+        accountTypeValidationService.oldSObjectsById = oldAccountsById;
 
         Test.startTest();
 
@@ -58,8 +58,8 @@ private class AccountTypeValidationServiceTest {
         Map<Id,Account> oldAccountsById = AccountFactory.fromJsonMapId(oldAccountsByIdPayload);
 
         AccountTypeValidationService accountTypeValidationService = new AccountTypeValidationService();
-        accountTypeValidationService.newAccounts = newAccounts;
-        accountTypeValidationService.oldAccountsById = oldAccountsById;
+        accountTypeValidationService.newSObjects = newAccounts;
+        accountTypeValidationService.oldSObjectsById = oldAccountsById;
 
         Test.startTest();
 
@@ -81,8 +81,8 @@ private class AccountTypeValidationServiceTest {
         Map<Id,Account> oldAccountsById = AccountFactory.fromJsonMapId(oldAccountsByIdPayload);
 
         AccountTypeValidationService accountTypeValidationService = new AccountTypeValidationService();
-        accountTypeValidationService.newAccounts = newAccounts;
-        accountTypeValidationService.oldAccountsById = oldAccountsById;
+        accountTypeValidationService.newSObjects = newAccounts;
+        accountTypeValidationService.oldSObjectsById = oldAccountsById;
 
         Test.startTest();
 
