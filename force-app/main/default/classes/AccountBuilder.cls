@@ -2,6 +2,8 @@ public without sharing class AccountBuilder {
 
     public Account account = new Account();
 
+    public AccountBuilder() {}
+
     public AccountBuilder(Account account) {
         this.account = account;
     }
