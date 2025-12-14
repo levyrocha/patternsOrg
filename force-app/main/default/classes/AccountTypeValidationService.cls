@@ -56,7 +56,7 @@ public without sharing class AccountTypeValidationService {
     public void performCheckingHasOpportunitiesWithStatusNotAllowed() {
         Map<String, List<Opportunity>> opportunitiesByAccountIdToPerform = (Map<String, List<Opportunity>>) Maps.groupBy('AccountId', this.opportunitiesToPerform);
 
-        for(String accountId : opportunitiesByAccountIdToPerform.keySet()){
+        for(String accountId : opportunitiesByAccountIdToPerform.keySet()) {
             if(this.isAccountWithoutOpportunitiesWithStatusNotAllowed(opportunitiesByAccountIdToPerform.get(accountId))) continue;
             this.addAccountError(this.newAccountsById.get(accountId));
         }

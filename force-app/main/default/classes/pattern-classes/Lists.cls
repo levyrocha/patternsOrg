@@ -122,7 +122,7 @@ public without sharing class Lists {
         return records == null || records.isEmpty();
     }
 
-    public static List<List<Object>> doPartions(List<Object> records, Integer size, Type destType){
+    public static List<List<Object>> doPartions(List<Object> records, Integer size, Type destType) {
         checkNotNull(records);
         checkArgument(size > 0);
         checkNotNull(destType);
@@ -176,13 +176,13 @@ public without sharing class Lists {
         private Integer splitSize;
         private Type destType;
 
-        Partition(List<Object> records, Integer size, Type destType){
+        Partition(List<Object> records, Integer size, Type destType) {
             this.items = records;
             this.splitSize = size;
             this.destType = destType;
         }
 
-        List<List<Object>> doPartition(){
+        List<List<Object>> doPartition() {
 
             List<List<Object>> result = (List<List<Object>>)destType.newInstance();
 

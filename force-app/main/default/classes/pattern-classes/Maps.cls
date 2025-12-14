@@ -386,13 +386,13 @@ public without sharing class Maps {
         return values;
     }
 
-    public static List<SObject> aggregateValues(Map<String, List<SObject>> mapToConvert){
+    public static List<SObject> aggregateValues(Map<String, List<SObject>> mapToConvert) {
 
         List<List<SObject>> recordsList = mapToConvert.values();
 
         List<SObject> aggregatedRecords = new List<SObject>();
 
-        for(List<SObject> records : recordsList){
+        for(List<SObject> records : recordsList) {
 
             aggregatedRecords.addAll(records);
         }

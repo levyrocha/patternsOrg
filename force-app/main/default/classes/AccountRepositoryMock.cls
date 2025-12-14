@@ -3,7 +3,7 @@ public without sharing class AccountRepositoryMock extends AccountRepository {
 
     String payload;
 
-    public AccountRepositoryMock(){}
+    public AccountRepositoryMock() {}
 
     public AccountRepositoryMock(String payload) {
         this.payload = payload;

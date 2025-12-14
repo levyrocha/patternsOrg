@@ -81,13 +81,13 @@ public virtual class Filter {
     }
 
 
-    public List<SObject> filterByValue( List<SObject> newRecords, String field, String value ){
+    public List<SObject> filterByValue( List<SObject> newRecords, String field, String value ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( fieldValue != value ) continue;
@@ -96,13 +96,13 @@ public virtual class Filter {
         return filtered;
     }
 
-    public List<SObject> filterByDifferentValue( List<SObject> newRecords, String field, String value ){
+    public List<SObject> filterByDifferentValue( List<SObject> newRecords, String field, String value ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( fieldValue == value ) continue;
@@ -111,14 +111,14 @@ public virtual class Filter {
         return filtered;
     }
 
-    public List<SObject> filterByListValue( List<SObject> newRecords, String field, List<String> values ){
+    public List<SObject> filterByListValue( List<SObject> newRecords, String field, List<String> values ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
         if( values.isEmpty() || values == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( !values.contains(fieldValue )) continue;
@@ -127,14 +127,14 @@ public virtual class Filter {
         return filtered;
     }
 
-    public List<SObject> filterByDifferentListValue( List<SObject> newRecords, String field, List<String> values ){
+    public List<SObject> filterByDifferentListValue( List<SObject> newRecords, String field, List<String> values ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
         if( values.isEmpty() || values == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( values.contains(fieldValue )) continue;
@@ -143,13 +143,13 @@ public virtual class Filter {
         return filtered;
     }
 
-    public List<SObject> filterByEmptyValue( List<SObject> newRecords, String field ){
+    public List<SObject> filterByEmptyValue( List<SObject> newRecords, String field ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( String.isNotEmpty(fieldValue) ) continue;
@@ -158,13 +158,13 @@ public virtual class Filter {
         return filtered;
     }
 
-    public List<SObject> filterByNotEmptyValue( List<SObject> newRecords, String field ){
+    public List<SObject> filterByNotEmptyValue( List<SObject> newRecords, String field ) {
 
         List<SObject> filtered = new List<SObject>();
 
         if( newRecords.isEmpty() || newRecords == null ) return filtered;
 
-        for( SObject newRecord : newRecords ){
+        for( SObject newRecord : newRecords ) {
 
             String fieldValue = String.valueOf( newRecord.get(field) );
             if( String.isEmpty(fieldValue) ) continue;

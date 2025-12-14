@@ -2,7 +2,7 @@
 public class UpdateUnableToLockRowQRPJobTest {
 
     @isTest
-    static void returnUnableToLockRowQRPJobId (){
+    static void returnUnableToLockRowQRPJobId () {
 
         Test.startTest();
 
@@ -14,7 +14,7 @@ public class UpdateUnableToLockRowQRPJobTest {
     }
 
     @isTest
-    static void itShouldReturnAnCronTrigger (){
+    static void itShouldReturnAnCronTrigger () {
 
         Test.startTest();
 

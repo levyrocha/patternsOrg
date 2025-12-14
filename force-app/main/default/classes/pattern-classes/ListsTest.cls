@@ -80,7 +80,7 @@ public class ListsTest {
     }
 
     @isTest
-    static void testCorrectPartions(){
+    static void testCorrectPartions() {
 
         List<Integer> records = new List<Integer> { 1, 2, 3, 4, 5 };
 
@@ -94,8 +94,8 @@ public class ListsTest {
 
         Integer tempNumber = 1;
 
-        for(List<Integer> itemsActual :actual){
-            for(Integer numb :itemsActual){
+        for(List<Integer> itemsActual :actual) {
+            for(Integer numb :itemsActual) {
                 Assert.areEqual(tempNumber, numb, 'Order of elements isn\'t saved');
                 ++tempNumber;
             }

@@ -115,7 +115,7 @@ public virtual class TriggerHandler {
         
         if((Trigger.isExecuting && Trigger.isBefore && Trigger.isInsert) || (ctx != null && ctx == 'before insert')) {
             this.context = TriggerContext.BEFORE_INSERT;
-        } else if((Trigger.isExecuting && Trigger.isBefore && Trigger.isUpdate) || (ctx != null && ctx == 'before update')){
+        } else if((Trigger.isExecuting && Trigger.isBefore && Trigger.isUpdate) || (ctx != null && ctx == 'before update')) {
             this.context = TriggerContext.BEFORE_UPDATE;
         } else if((Trigger.isExecuting && Trigger.isBefore && Trigger.isDelete) || (ctx != null && ctx == 'before delete')) {
             this.context = TriggerContext.BEFORE_DELETE;
@@ -161,19 +161,19 @@ public virtual class TriggerHandler {
      ***************************************/
     
     @TestVisible
-    protected virtual void beforeInsert(){}
+    protected virtual void beforeInsert() {}
     @TestVisible
-    protected virtual void beforeUpdate(){}
+    protected virtual void beforeUpdate() {}
     @TestVisible
-    protected virtual void beforeDelete(){}
+    protected virtual void beforeDelete() {}
     @TestVisible
-    protected virtual void afterInsert(){}
+    protected virtual void afterInsert() {}
     @TestVisible
-    protected virtual void afterUpdate(){}
+    protected virtual void afterUpdate() {}
     @TestVisible
-    protected virtual void afterDelete(){}
+    protected virtual void afterDelete() {}
     @TestVisible
-    protected virtual void afterUndelete(){}
+    protected virtual void afterUndelete() {}
 
     /***************************************
      * inner classes
