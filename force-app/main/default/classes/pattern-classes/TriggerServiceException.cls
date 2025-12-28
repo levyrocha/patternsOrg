@@ -1,0 +1,1 @@
+public class TriggerServiceException extends Exception {}

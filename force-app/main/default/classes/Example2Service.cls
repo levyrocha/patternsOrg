@@ -1,6 +1,8 @@
-public without sharing class Example2Service extends TriggerBase {
+public without sharing class Example2Service extends TriggerBase implements ITriggerService {
 
     public Example2Service() {}
 
-    public void execute() {}
+    public void execute() {
+        System.debug('#### Example2Service');
+    }
 }

@@ -24,16 +24,16 @@ public without sharing class AccountFactory {
         return accounts;
     }
 
-    public static Account fromJson ( String payload ) {
+    public static Account fromJson (String payload) {
 		return (Account) JSON.deserialize(payload, Account.class);
 	}
 
-	public static List<Account> fromJsonArray ( String payload ) {
+	public static List<Account> fromJsonArray (String payload) {
 		return (List<Account>) JSON.deserialize(payload, List<Account>.class);
 	}
 
-	public static Map<Id,Account> fromJsonMapId( String payload ) {
-		return ( Map<Id,Account> ) JSON.deserialize( payload, Map<Id,Account>.class );
+	public static Map<Id, Account> fromJsonMapId(String payload) {
+		return ( Map<Id, Account> ) JSON.deserialize( payload, Map<Id, Account>.class );
 	}
     
 }

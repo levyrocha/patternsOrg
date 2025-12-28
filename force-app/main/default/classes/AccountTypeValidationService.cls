@@ -1,4 +1,4 @@
-public without sharing class AccountTypeValidationService extends TriggerBase {
+public without sharing class AccountTypeValidationService extends TriggerBase implements ITriggerService {
     
     public OpportunityRepository opportunityRepository;
     public AccountFilter accountFilter;
