@@ -35,8 +35,8 @@ public without sharing class TriggerServiceDispatcher {
         this.triggerServices = triggerServices;
     }
 
-    private void setServicesToExecute(List<ITriggerService> iTriggerServices) {
-        this.servicesToExecute.addAll(iTriggerServices);
+    private void setServicesToExecute(ITriggerService iTriggerService) {
+        this.servicesToExecute.add(iTriggerService);
     }
 
     private String getTriggerHandler() {
@@ -65,8 +65,7 @@ public without sharing class TriggerServiceDispatcher {
 
     private void buildServicesToExecute() {
         for (TriggerService__mdt triggerService : this.getTriggerServices()) {
-            ITriggerService iTriggerService = this.triggerServiceInstancer.create(triggerService.ServiceClass__c);
-            this.setServicesToExecute(new List<ITriggerService>{iTriggerService});
+            this.setServicesToExecute(this.triggerServiceInstancer.create(triggerService.ServiceClass__c));
         }
     }
 
