@@ -1,4 +1,5 @@
-public without sharing class TriggerServiceInstancerMock extends TriggerServiceInstancer{
+@isTest
+public without sharing class TriggerServiceInstanciatorMock extends TriggerServiceInstanciator{
 
     public override ITriggerService create(String className) {
         if (className == 'TriggerService1Mock') return new TriggerService1Mock();

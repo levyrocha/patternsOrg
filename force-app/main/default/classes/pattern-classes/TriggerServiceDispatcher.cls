@@ -2,11 +2,12 @@ public without sharing class TriggerServiceDispatcher {
 
     private String triggerHandler;
     private String triggerEvent;
+
     private List<TriggerService__mdt> triggerServices = new List<TriggerService__mdt>();
     private List<ITriggerService> servicesToExecute = new List<ITriggerService>();
 
     private TriggerServiceRepository triggerServiceRepository = new TriggerServiceRepository();
-    private TriggerServiceInstancer triggerServiceInstancer = new TriggerServiceInstancer();
+    private TriggerServiceInstanciator TriggerServiceInstanciator = new TriggerServiceInstanciator();
 
     public TriggerServiceDispatcher(String triggerHandler, String triggerEvent) {
         this.setTriggerHandler(triggerHandler);
@@ -64,16 +65,14 @@ public without sharing class TriggerServiceDispatcher {
     }
 
     private void buildServicesToExecute() {
-        for (TriggerService__mdt triggerService : this.getTriggerServices()) {
-            this.setServicesToExecute(this.triggerServiceInstancer.create(triggerService.ServiceClass__c));
-        }
+        for (TriggerService__mdt triggerService : this.getTriggerServices()) this.setServicesToExecute(this.TriggerServiceInstanciator.create(triggerService.ServiceClass__c));
     }
 
     public void setTriggerServiceRepository(TriggerServiceRepository triggerServiceRepositoryMock) {
         this.triggerServiceRepository = triggerServiceRepositoryMock;
     }
 
-    public void setTriggerServiceInstancer(TriggerServiceInstancer triggerServiceInstancerMock) {
-        this.triggerServiceInstancer = triggerServiceInstancerMock;
+    public void setTriggerServiceInstanciator(TriggerServiceInstanciator TriggerServiceInstanciatorMock) {
+        this.TriggerServiceInstanciator = TriggerServiceInstanciatorMock;
     }
 }

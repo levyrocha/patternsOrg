@@ -8,12 +8,12 @@ private class TriggerServiceDispatcherTest {
         TriggerServiceDispatcher triggerServiceDispatcher = new TriggerServiceDispatcher('TestHandler', 'BEFORE_UPDATE');
 
         triggerServiceDispatcher.setTriggerServiceRepository(new TriggerServiceRepositoryMock(triggerServicesPayload));
-        triggerServiceDispatcher.setTriggerServiceInstancer(new TriggerServiceInstancerMock());
+        triggerServiceDispatcher.setTriggerServiceInstanciator(new TriggerServiceInstanciatorMock());
         List<ITriggerService> executedServices = triggerServiceDispatcher.executeServices();
 
         Assert.areEqual(2, executedServices.size(), 'Should be executed 2 services');
-        Assert.areEqual('TriggerService1Mock', ((TriggerServiceInstancerMock.TriggerService1Mock) executedServices.get(0)).getClassName(), 'Should be the TriggerService1Mock class name');
-        Assert.areEqual('TriggerService2Mock', ((TriggerServiceInstancerMock.TriggerService2Mock) executedServices.get(1)).getClassName(), 'Should be the TriggerService2Mock class name');
+        Assert.areEqual('TriggerService1Mock', ((TriggerServiceInstanciatorMock.TriggerService1Mock) executedServices.get(0)).getClassName(), 'Should be the TriggerService1Mock class name');
+        Assert.areEqual('TriggerService2Mock', ((TriggerServiceInstanciatorMock.TriggerService2Mock) executedServices.get(1)).getClassName(), 'Should be the TriggerService2Mock class name');
     }
 
     @isTest
@@ -23,7 +23,7 @@ private class TriggerServiceDispatcherTest {
         TriggerServiceDispatcher triggerServiceDispatcher = new TriggerServiceDispatcher('TestHandler', 'BEFORE_UPDATE');
 
         triggerServiceDispatcher.setTriggerServiceRepository(new TriggerServiceRepositoryMock(triggerServicesPayload));
-        triggerServiceDispatcher.setTriggerServiceInstancer(new TriggerServiceInstancerMock());
+        triggerServiceDispatcher.setTriggerServiceInstanciator(new TriggerServiceInstanciatorMock());
 
         List<ITriggerService> executedServices;
 
