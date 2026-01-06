@@ -19,7 +19,7 @@ public without sharing class TriggerServiceDispatcher {
         this.setTriggerServices(this.provideTriggerServices());
         if(this.notHasTriggerServices()) return new List<ITriggerService>();
         this.buildServicesToExecute();
-        this.execute();
+        this.executeServices();
         return this.getServicesToExecute();
     }
 
@@ -72,7 +72,7 @@ public without sharing class TriggerServiceDispatcher {
         for(TriggerService__mdt triggerService : this.getTriggerServices()) this.setServicesToExecute(this.triggerServiceInstanciator.create(triggerService.ServiceClass__c));
     }
 
-    private void execute() {
+    private void executeServices() {
         for(ITriggerService service : this.getServicesToExecute()) service.execute();
     }
 
