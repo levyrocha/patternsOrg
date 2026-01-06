@@ -1,7 +1,7 @@
 @isTest
 public without sharing class TriggerServiceFactory {
 
-    public static TriggerService__mdt fromJson (String payload) {
+  	public static TriggerService__mdt fromJson (String payload) {
 		return (TriggerService__mdt) JSON.deserialize(payload, TriggerService__mdt.class);
 	}
 
