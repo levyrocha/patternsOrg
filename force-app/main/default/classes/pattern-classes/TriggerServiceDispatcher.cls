@@ -14,13 +14,12 @@ public without sharing class TriggerServiceDispatcher {
         this.setTriggerEvent(triggerEvent);
     }
 
-    public List<ITriggerService> executeServices() {
-        if(String.isBlank(this.triggerHandler)) throw new TriggerServiceException('Preencha o triggerHandler');
-        if(String.isBlank(this.triggerEvent)) throw new TriggerServiceException('Preencha o triggerEvent');
+    public List<ITriggerService> toDispatche() {
+        this.validateTriggerSetup();
         this.setTriggerServices(this.provideTriggerServices());
         if(this.notHasTriggerServices()) return new List<ITriggerService>();
         this.buildServicesToExecute();
-        for (ITriggerService service : this.getServicesToExecute()) service.execute();
+        this.execute();
         return this.getServicesToExecute();
     }
 
@@ -56,6 +55,11 @@ public without sharing class TriggerServiceDispatcher {
         return this.servicesToExecute;
     }
 
+    private void validateTriggerSetup() {
+        if(String.isBlank(this.triggerHandler)) throw new TriggerServiceException('Preencha o triggerHandler');
+        if(String.isBlank(this.triggerEvent)) throw new TriggerServiceException('Preencha o triggerEvent');
+    }
+
     private List<TriggerService__mdt> provideTriggerServices() {
         return this.triggerServiceRepository.getTriggerServicesByHandlerAndEvent(this.getTriggerHandler(), this.getTriggerEvent());
     }
@@ -65,7 +69,11 @@ public without sharing class TriggerServiceDispatcher {
     }
 
     private void buildServicesToExecute() {
-        for (TriggerService__mdt triggerService : this.getTriggerServices()) this.setServicesToExecute(this.triggerServiceInstanciator.create(triggerService.ServiceClass__c));
+        for(TriggerService__mdt triggerService : this.getTriggerServices()) this.setServicesToExecute(this.triggerServiceInstanciator.create(triggerService.ServiceClass__c));
+    }
+
+    private void execute() {
+        for(ITriggerService service : this.getServicesToExecute()) service.execute();
     }
 
     public void setTriggerServiceRepository(TriggerServiceRepository triggerServiceRepositoryMock) {

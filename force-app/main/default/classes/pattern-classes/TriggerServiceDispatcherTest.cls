@@ -9,7 +9,7 @@ private class TriggerServiceDispatcherTest {
 
         triggerServiceDispatcher.setTriggerServiceRepository(new TriggerServiceRepositoryMock(triggerServicesPayload));
         triggerServiceDispatcher.setTriggerServiceInstanciator(new TriggerServiceFactory.TriggerServiceInstanciatorMock());
-        List<ITriggerService> executedServices = triggerServiceDispatcher.executeServices();
+        List<ITriggerService> executedServices = triggerServiceDispatcher.toDispatche();
 
         Assert.areEqual(2, executedServices.size(), 'Should be executed 2 services');
         Assert.areEqual('TriggerService1Mock', ((TriggerServiceFactory.TriggerService1Mock) executedServices.get(0)).getClassName(), 'Should be the TriggerService1Mock class name');
@@ -28,7 +28,7 @@ private class TriggerServiceDispatcherTest {
         List<ITriggerService> executedServices;
 
         try {
-            executedServices = triggerServiceDispatcher.executeServices();
+            executedServices = triggerServiceDispatcher.toDispatche();
             Assert.isFalse(true, 'It should give an error, so it shouldn\'t get here.');
         } catch (Exception e) {
             Assert.isTrue(e.getMessage().contains('TriggerServiceNMock'), 'Should be true');
