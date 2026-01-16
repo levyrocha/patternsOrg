@@ -14,7 +14,6 @@ public abstract class AbstractRepository {
     }
 
     virtual protected List<SObject> filterWithId (List<SObject> aggregates) {
-
         List<SObject> aggregatesToStore = new  List<SObject>();
 
         for(SObject aggregate : aggregates) {
