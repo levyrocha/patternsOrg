@@ -2,25 +2,17 @@ public abstract class AbstractRepository {
 
     virtual
     public SObject save (SObject aggregate) {
-
         if (aggregate == null) return null;
-
         upsert aggregate;
-
         return aggregate;
     }
 
     virtual
     public List<SObject> save (List<SObject> aggregates) {
-
         if (aggregates == null) return new List<SObject>();
-
         if (aggregates.isEmpty()) return aggregates;
-
         upsert aggregates;
-
         return aggregates;
-
     }
 
     virtual
@@ -28,7 +20,7 @@ public abstract class AbstractRepository {
 
         List<SObject> aggregatesToStore = new  List<SObject>();
 
-        for (SObject aggregate : aggregates) {
+        for(SObject aggregate : aggregates) {
             if (aggregate.id != null) aggregatesToStore.add (aggregate);
         }
 
@@ -36,7 +28,7 @@ public abstract class AbstractRepository {
     }
 
     virtual
-    protected List<SObject> filterWithOutId (List<SObject> aggregates) {
+    protected List<SObject> filterWithoutId (List<SObject> aggregates) {
         List<SObject> aggregatesToStore = new  List<SObject>();
 
         for (SObject aggregate : aggregates) {
@@ -47,55 +39,43 @@ public abstract class AbstractRepository {
     }
 
     virtual
-    public List<Database.SaveResult> updateAll ( List<SObject> aggregates ) {
-
-        if (aggregates == null || aggregates.isEmpty()) return new List<Database.SaveResult>();
-
+    public List<Database.SaveResult> updateAll (List<SObject> aggregates) {
+        if(aggregates == null || aggregates.isEmpty()) return new List<Database.SaveResult>();
         return Database.update (aggregates, false);
     }
 
     virtual
     public List<Database.SaveResult> insertAll ( List<SObject> aggregates ) {
-
-        if (aggregates == null || aggregates.isEmpty()) return new List<Database.SaveResult>();
-
-        return Database.insert (aggregates, false);
+        if(aggregates == null || aggregates.isEmpty()) return new List<Database.SaveResult>();
+        return Database.insert(aggregates, false);
     }
 
     virtual
-    public List<Database.UpsertResult> upsertAll ( List<SObject> aggregates ) {
-
-        if (aggregates == null || aggregates.isEmpty()) return new List<Database.UpsertResult>();
-
-        return Database.upsert (aggregates, false);
+    public List<Database.UpsertResult> upsertAll (List<SObject> aggregates) {
+        if(aggregates == null || aggregates.isEmpty()) return new List<Database.UpsertResult>();
+        return Database.upsert(aggregates, false);
     }
 
     virtual
-    public List<Database.UpsertResult> upsertAllOrNone ( List<SObject> aggregates ) {
-
-        if (aggregates == null || aggregates.isEmpty()) return new List<Database.UpsertResult>();
-
-        return Database.upsert (aggregates, true);
+    public List<Database.UpsertResult> upsertAllOrNone (List<SObject> aggregates) {
+        if(aggregates == null || aggregates.isEmpty()) return new List<Database.UpsertResult>();
+        return Database.upsert(aggregates, true);
     }
 
     virtual
     public List<SObject> upsertRecords(List<SObject> records) {
-        if (!records.isEmpty()) {
-            upsert records;
-        }
+        if(!records.isEmpty()) upsert records;
         return records;
     }
     
     virtual
     public void deleteRecords(List<SObject> records) {
-        if (!records.isEmpty()) {
-            delete records;
-        }
+        if(!records.isEmpty()) delete records;
     }
 
     virtual
-    public void deleteRecord( SObject record ) {
-        if( record == null ) return;
+    public void deleteRecord(SObject record) {
+        if(record == null) return;
         delete record;
     }
     
