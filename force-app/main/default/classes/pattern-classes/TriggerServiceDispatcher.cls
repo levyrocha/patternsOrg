@@ -1,10 +1,11 @@
 public without sharing class TriggerServiceDispatcher {
-
+    
     private String triggerHandler;
     private String triggerEvent;
 
     private List<TriggerService__mdt> triggerServices = new List<TriggerService__mdt>();
     private List<ITriggerService> servicesToExecute = new List<ITriggerService>();
+    private List<ITriggerService> servicesExecuted = new List<ITriggerService>();
 
     private TriggerServiceRepository triggerServiceRepository = new TriggerServiceRepository();
     private TriggerServiceInstanciator triggerServiceInstanciator = new TriggerServiceInstanciator();
@@ -17,10 +18,13 @@ public without sharing class TriggerServiceDispatcher {
     public List<ITriggerService> toDispatche() {
         this.validateTriggerSetup();
         this.setTriggerServices(this.provideTriggerServices());
+
         if(this.notHasTriggerServices()) return new List<ITriggerService>();
+        
         this.buildServicesToExecute();
         this.executeServices();
-        return this.getServicesToExecute();
+
+        return this.getServicesExecuted();
     }
 
     private void setTriggerHandler(String triggerHandler) {
@@ -55,9 +59,21 @@ public without sharing class TriggerServiceDispatcher {
         return this.servicesToExecute;
     }
 
+    private List<ITriggerService> getServicesExecuted() {
+        return this.servicesExecuted;
+    }
+
+    private void setServiceExecuted(ITriggerService service) {
+        this.servicesExecuted.add(service);
+    }
+
     private void validateTriggerSetup() {
-        if(String.isBlank(this.triggerHandler)) throw new TriggerServiceException('Preencha o triggerHandler');
-        if(String.isBlank(this.triggerEvent)) throw new TriggerServiceException('Preencha o triggerEvent');
+        if(String.isBlank(this.triggerHandler)) {
+            throw new TriggerServiceException('Preencha o triggerHandler');
+        }
+        if(String.isBlank(this.triggerEvent)) {
+            throw new TriggerServiceException('Preencha o triggerEvent');
+        }
     }
 
     private List<TriggerService__mdt> provideTriggerServices() {
@@ -69,11 +85,16 @@ public without sharing class TriggerServiceDispatcher {
     }
 
     private void buildServicesToExecute() {
-        for(TriggerService__mdt triggerService : this.getTriggerServices()) this.setServicesToExecute(this.triggerServiceInstanciator.create(triggerService.ServiceClass__c));
+        for(TriggerService__mdt triggerService : this.getTriggerServices()) {
+            this.setServicesToExecute(this.triggerServiceInstanciator.create(triggerService.DeveloperName));
+        }
     }
 
     private void executeServices() {
-        for(ITriggerService service : this.getServicesToExecute()) service.execute();
+        for(ITriggerService service : this.getServicesToExecute()) {
+            service.execute();
+            this.setServiceExecuted(service);
+        }
     }
 
     public void setTriggerServiceRepository(TriggerServiceRepository triggerServiceRepositoryMock) {

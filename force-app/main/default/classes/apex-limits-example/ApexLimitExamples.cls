@@ -1,28 +1,28 @@
-public without sharing class ApexLimitExamples {
+public class ApexLimitExamples {
     public ApexLimitExamples() {}
 
     //Total number of SOQL queries issued
-    public void totalNumberOfSOQLQueriesIssued() {
-        for(Integer i = 1 ; i <= 101 ; i++) {
+    public void totalNumberOfSOQLQueriesIssued(Integer counter) {
+        for(Integer i = 1 ; i <= counter ; i++) {
             List<Account> accounts = [SELECT Id FROM Account LIMIT 1];
         }
     }
 
     //Total number of records retrieved by SOQL queries
-    public void totalNumberOfRecordsRetrievedBySOQLQueries () {
-        List<Account> accounts = [SELECT Id FROM Account];
+    public void totalNumberOfRecordsRetrievedBySOQLQueries(Integer quantity) {
+        List<Account> accounts = [SELECT Id FROM Account LIMIT : quantity];
     }
 
     //Total number of records retrieved by Database.getQueryLocator
-    public void totalNumberOfRecordsRetrievedByDatabaseGetQueryLocator() {
-        String query = 'SELECT Id FROM Account LIMIT 10001';
+    public void totalNumberOfRecordsRetrievedByDatabaseGetQueryLocator(String quantity) {
+        String query = 'SELECT Id FROM Account LIMIT ' + quantity;
         Database.getQueryLocator(query);
     }
 
     //Total number of callouts (HTTP requests or web services calls) in a transaction
     //https://docs.cnpj.ws/referencia-de-api/api-publica/consultando-cnpj
-    public void totalNumberOfCallout() {
-        for(Integer i = 1 ; i <= 101 ; i++) {
+    public void totalNumberOfCallout(Integer counter) {
+        for(Integer i = 1 ; i <= counter ; i++) {
             this.calloutExample();
         }
     }
@@ -49,8 +49,8 @@ public without sharing class ApexLimitExamples {
     }
 
     //Maximum number of methods with the future annotation allowed per Apex invocation
-    public void maximumNumberOfMethodsWithTheFutureAnnotationAllowedPerApexInvocation() {
-        for(Integer i = 1 ; i <= 51 ; i++) {
+    public void maximumNumberOfMethodsWithTheFutureAnnotationAllowedPerApexInvocation(Integer counter) {
+        for(Integer i = 1 ; i <= counter ; i++) {
             futureMethod();
         }
     }
@@ -61,8 +61,8 @@ public without sharing class ApexLimitExamples {
     }
 
     //Maximum number of Apex jobs added to the queue with System.enqueueJob Sync
-    public void maximumNumberOfApexJobsAddedToTheQueueWithSystemEnqueueJobSync() {
-        for(Integer i = 1 ; i <= 51 ; i++) {
+    public void maximumNumberOfApexJobsAddedToTheQueueWithSystemEnqueueJobSync(Integer counter) {
+        for(Integer i = 1 ; i <= counter ; i++) {
             System.enqueueJob(new QueueableExample(ExampleQueueableTypes.SYNC));
         }
     }

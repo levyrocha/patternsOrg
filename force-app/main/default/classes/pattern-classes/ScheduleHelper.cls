@@ -2,9 +2,7 @@ public class ScheduleHelper {
 
     public static Integer jobCountForTest = 0;
 
-    public ScheduleHelper() {
-
-    }
+    public ScheduleHelper() {}
 
     public void scheduleIntoMinutesInterval ( Schedulable service,  Integer minuteInterval ) {
 

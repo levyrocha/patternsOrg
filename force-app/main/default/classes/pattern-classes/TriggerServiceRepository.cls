@@ -5,7 +5,7 @@ public virtual class TriggerServiceRepository extends AbstractRepository{
     public virtual List<TriggerService__mdt> getTriggerServicesByHandlerAndEvent(String triggerHandler, String triggerEvent) {
         return [
             SELECT 
-                ServiceClass__c
+                DeveloperName
                 , ExecutionOrder__c 
             FROM 
                 TriggerService__mdt 

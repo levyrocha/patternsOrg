@@ -3,7 +3,7 @@ private class TriggerServiceDispatcherTest {
 
     @isTest
     static void executeServicesWithSuccess() {
-        String triggerServicesPayload = '[{"ServiceClass__c":"TriggerService1Mock", "ExecutionOrder__c": 1, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}, {"ServiceClass__c":"TriggerService2Mock", "ExecutionOrder__c": 2, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}]';
+        String triggerServicesPayload = '[{"DeveloperName":"TriggerService1Mock", "ExecutionOrder__c": 1, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}, {"DeveloperName":"TriggerService2Mock", "ExecutionOrder__c": 2, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}]';
 
         TriggerServiceDispatcher triggerServiceDispatcher = new TriggerServiceDispatcher('TestHandler', 'BEFORE_UPDATE');
 
@@ -18,7 +18,7 @@ private class TriggerServiceDispatcherTest {
 
     @isTest
     static void executeServicesWithError() {
-        String triggerServicesPayload = '[{"ServiceClass__c":"TriggerService1Mock", "ExecutionOrder__c": 1, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}, {"ServiceClass__c":"TriggerServiceNMock", "ExecutionOrder__c": 2, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}]';
+        String triggerServicesPayload = '[{"DeveloperName":"TriggerService1Mock", "ExecutionOrder__c": 1, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}, {"DeveloperName":"TriggerServiceNMock", "ExecutionOrder__c": 2, "TriggerHandler__c":"TestHandler", "TriggerEvent__c":"BEFORE_UPDATE", "IsActive__c": true}]';
 
         TriggerServiceDispatcher triggerServiceDispatcher = new TriggerServiceDispatcher('TestHandler', 'BEFORE_UPDATE');
 
