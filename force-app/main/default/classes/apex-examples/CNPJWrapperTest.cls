@@ -224,8 +224,8 @@ public class CNPJWrapperTest {
 
         Assert.areEqual(1, cnpjWrapper.estabelecimento.cidade.id);
 		Assert.areEqual('text', cnpjWrapper.estabelecimento.cidade.nome);
-		Assert.areEqual('text', cnpjWrapper.estabelecimento.cidade.ibge_id);
-		Assert.areEqual(1, cnpjWrapper.estabelecimento.cidade.siafi_id);
+		Assert.areEqual(1, cnpjWrapper.estabelecimento.cidade.ibge_id);
+		Assert.areEqual('text', cnpjWrapper.estabelecimento.cidade.siafi_id);
 
         Assert.areEqual('text', cnpjWrapper.estabelecimento.inscricoes_estaduais[0].inscricao_estadual);
         Assert.areEqual(true, cnpjWrapper.estabelecimento.inscricoes_estaduais[0].ativo);
