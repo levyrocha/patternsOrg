@@ -1,0 +1,582 @@
+{
+    "project_lifecycle": {
+      "phase_groups": [
+        {
+          "group_order": 1,
+          "group_name": "Commercial And Pre-Sales",
+          "execution_model": "parallel",
+          "description": "Fase comercial e definição inicial da solução ocorrem simultaneamente.",
+          "phases": [
+            {
+              "phase": "Commercial",
+              "technical_name": "Sales / Account Management",
+              "execution_type": "sequential",
+              "objective": "Venda do projeto e relacionamento comercial.",
+              "inputs": [
+                "Lead comercial",
+                "Necessidade inicial do cliente",
+                "Budget estimado",
+                "Stakeholders do cliente",
+                "Prazo esperado",
+                "Escopo inicial"
+              ],
+              "main_roles": [
+                "Account Executive"
+              ],
+              "outputs": [
+                "Contrato",
+                "Opportunity",
+                "Proposta comercial",
+                "Escopo macro",
+                "Expectativa inicial de prazo",
+                "Informações iniciais do cliente"
+              ]
+            },
+            {
+              "phase": "Pre-Sales",
+              "technical_name": "Pre-Sales / Solutioning",
+              "execution_type": "parallel",
+              "objective": "Definição macro da solução e estimativas.",
+              "inputs": [
+                "Escopo inicial",
+                "Objetivos de negócio",
+                "Informações comerciais",
+                "Budget do cliente",
+                "Necessidades funcionais iniciais",
+                "Sistemas envolvidos"
+              ],
+              "main_roles": [
+                "Solution Engineer",
+                "Solution Architect",
+                "Delivery Manager"
+              ],
+              "outputs": [
+                "SOW",
+                "ROM Estimate",
+                "High-Level Design",
+                "Estimativa inicial de esforço",
+                "Sizing técnico",
+                "Estratégia inicial de delivery"
+              ]
+            },
+            {
+              "phase": "Pre-Sales Architecture",
+              "technical_name": "High-Level Architecture",
+              "execution_type": "parallel",
+              "objective": "Definir arquitetura inicial e validar viabilidade técnica.",
+              "inputs": [
+                "Requisitos iniciais",
+                "Sistemas existentes",
+                "Necessidades de integração",
+                "Restrições técnicas",
+                "Requisitos de segurança",
+                "Volume estimado de dados"
+              ],
+              "main_roles": [
+                "Solution Architect",
+                "Enterprise Architect"
+              ],
+              "outputs": [
+                "Architecture Vision",
+                "Technical Risk Assessment",
+                "Initial Integration Strategy",
+                "Estratégia de ambientes",
+                "Definição inicial de arquitetura"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 2,
+          "group_name": "Project Initiation",
+          "execution_model": "sequential",
+          "description": "Formalização oficial do projeto.",
+          "phases": [
+            {
+              "phase": "Project Initiation",
+              "technical_name": "Kickoff / Project Initiation",
+              "execution_type": "sequential",
+              "objective": "Formalização do projeto e definição da governança.",
+              "inputs": [
+                "Contrato assinado",
+                "SOW",
+                "Sizing inicial",
+                "Stakeholders definidos",
+                "Escopo aprovado",
+                "Estratégia inicial de delivery"
+              ],
+              "main_roles": [
+                "Project Manager",
+                "Scrum Master"
+              ],
+              "outputs": [
+                "Project Charter",
+                "RAID Log",
+                "Governance Model",
+                "Plano de comunicação",
+                "Cronograma macro",
+                "Calendário de cerimônias"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 3,
+          "group_name": "Discovery And Solution Design",
+          "execution_model": "parallel",
+          "description": "Discovery, mapeamento de processos e arquitetura acontecem simultaneamente.",
+          "phases": [
+            {
+              "phase": "Discovery",
+              "technical_name": "Business Discovery / Requirement Gathering",
+              "execution_type": "parallel",
+              "objective": "Entendimento detalhado do negócio.",
+              "inputs": [
+                "SOW",
+                "Stakeholders do negócio",
+                "Processos atuais",
+                "Regras de negócio",
+                "Objetivos do projeto",
+                "Governance Model"
+              ],
+              "main_roles": [
+                "Business Analyst",
+                "Functional Consultant",
+                "Product Owner"
+              ],
+              "outputs": [
+                "Requirements",
+                "BRD",
+                "AS-IS Flows",
+                "TO-BE Flows",
+                "Business Rules",
+                "Lista de gaps"
+              ]
+            },
+            {
+              "phase": "Process Mapping",
+              "technical_name": "Process Flow Mapping",
+              "execution_type": "parallel",
+              "objective": "Mapear processos de negócio.",
+              "inputs": [
+                "Regras de negócio",
+                "Workshops discovery",
+                "Fluxos atuais",
+                "Requisitos levantados",
+                "Atores do processo"
+              ],
+              "main_roles": [
+                "Business Analyst",
+                "Functional Consultant"
+              ],
+              "outputs": [
+                "Process Flows",
+                "BPMN Diagrams",
+                "Business Flows",
+                "Fluxos AS-IS",
+                "Fluxos TO-BE"
+              ]
+            },
+            {
+              "phase": "Solution Architecture",
+              "technical_name": "Solution Design / Architecture",
+              "execution_type": "continuous_parallel",
+              "objective": "Definir arquitetura técnica e funcional.",
+              "inputs": [
+                "Requirements",
+                "Process Flows",
+                "Necessidades de integração",
+                "Volumes estimados",
+                "Requisitos de segurança",
+                "Requisitos não funcionais"
+              ],
+              "main_roles": [
+                "Solution Architect",
+                "Technical Architect",
+                "Enterprise Architect"
+              ],
+              "outputs": [
+                "HLD",
+                "LLD",
+                "Security Model",
+                "Integration Architecture",
+                "Data Model",
+                "Technical Standards"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 4,
+          "group_name": "Backlog Definition",
+          "execution_model": "parallel",
+          "description": "Criação e refinamento contínuo do backlog.",
+          "phases": [
+            {
+              "phase": "Backlog Structuring",
+              "technical_name": "Backlog Creation / Story Mapping",
+              "execution_type": "sequential",
+              "objective": "Transformar requisitos em backlog executável.",
+              "inputs": [
+                "Requirements",
+                "BRD",
+                "Process Flows",
+                "Arquitetura inicial",
+                "Regras de negócio",
+                "Priorização do PO"
+              ],
+              "main_roles": [
+                "Business Analyst",
+                "Functional Consultant",
+                "Product Owner"
+              ],
+              "outputs": [
+                "Epics",
+                "Features",
+                "User Stories",
+                "Product Backlog",
+                "Acceptance Criteria"
+              ]
+            },
+            {
+              "phase": "Backlog Refinement",
+              "technical_name": "Backlog Grooming / Technical Refinement",
+              "execution_type": "continuous_parallel",
+              "objective": "Refinar stories continuamente.",
+              "inputs": [
+                "User Stories",
+                "Acceptance Criteria",
+                "Arquitetura da solução",
+                "Dependências técnicas"
+              ],
+              "main_roles": [
+                "Business Analyst",
+                "Tech Lead",
+                "Solution Architect",
+                "Developers"
+              ],
+              "outputs": [
+                "Refined Stories",
+                "Technical Tasks",
+                "Story Estimates",
+                "Technical Approach",
+                "Sprint-ready backlog"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 5,
+          "group_name": "Sprint Execution",
+          "execution_model": "parallel",
+          "description": "Execução contínua da sprint com desenvolvimento, arquitetura, QA e code review simultâneos.",
+          "phases": [
+            {
+              "phase": "Sprint Planning",
+              "technical_name": "Sprint Planning Ceremony",
+              "execution_type": "ceremony",
+              "objective": "Planejar sprint atual.",
+              "inputs": [
+                "Sprint-ready backlog",
+                "Estimativas",
+                "Capacidade do time",
+                "Prioridades do PO",
+                "Dependências técnicas"
+              ],
+              "main_roles": [
+                "Scrum Master",
+                "Product Owner",
+                "Developers",
+                "Tech Lead"
+              ],
+              "outputs": [
+                "Sprint Backlog",
+                "Sprint Goal",
+                "Task Allocation",
+                "Comprometimento da sprint"
+              ]
+            },
+            {
+              "phase": "Development",
+              "technical_name": "Build / Development",
+              "execution_type": "continuous_parallel",
+              "objective": "Construção contínua da solução.",
+              "inputs": [
+                "Sprint Backlog",
+                "Technical Tasks",
+                "Acceptance Criteria",
+                "Arquitetura definida",
+                "Acessos aos ambientes",
+                "Padrões técnicos"
+              ],
+              "main_roles": [
+                "Salesforce Developer",
+                "Integration Developer",
+                "Front-end Developer",
+                "Tech Lead"
+              ],
+              "outputs": [
+                "Code",
+                "Features",
+                "Deployable Packages",
+                "Pull Requests",
+                "Unit Tests"
+              ]
+            },
+            {
+              "phase": "Code Review",
+              "technical_name": "Peer Review / Technical Validation",
+              "execution_type": "continuous_parallel",
+              "objective": "Garantir qualidade técnica do código.",
+              "inputs": [
+                "Pull Requests",
+                "Código desenvolvido",
+                "Padrões técnicos",
+                "Definition of Done"
+              ],
+              "main_roles": [
+                "Tech Lead",
+                "Senior Developer",
+                "Solution Architect"
+              ],
+              "outputs": [
+                "Approved Pull Requests",
+                "Validated Code",
+                "Feedback técnico",
+                "Correções solicitadas"
+              ]
+            },
+            {
+              "phase": "Testing",
+              "technical_name": "QA / Testing",
+              "execution_type": "continuous_parallel",
+              "objective": "Garantia contínua de qualidade.",
+              "inputs": [
+                "Código validado",
+                "Acceptance Criteria",
+                "Test Scenarios",
+                "Deploy em QA",
+                "Requirements"
+              ],
+              "main_roles": [
+                "QA Engineer",
+                "Test Lead"
+              ],
+              "outputs": [
+                "Bug Reports",
+                "Test Reports",
+                "Regression Results",
+                "QA Sign-off"
+              ]
+            },
+            {
+              "phase": "Continuous Architecture",
+              "technical_name": "Architecture Governance",
+              "execution_type": "continuous_parallel",
+              "objective": "Governança técnica contínua.",
+              "inputs": [
+                "Código desenvolvido",
+                "Arquitetura existente",
+                "Novos requisitos",
+                "Issues técnicos",
+                "Resultados QA"
+              ],
+              "main_roles": [
+                "Solution Architect",
+                "Enterprise Architect",
+                "Tech Lead"
+              ],
+              "outputs": [
+                "Architecture Reviews",
+                "Technical Governance",
+                "Technical Debt Management",
+                "Architecture Decisions"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 6,
+          "group_name": "Business Validation",
+          "execution_model": "parallel",
+          "description": "Validação funcional e correções ocorrem simultaneamente.",
+          "phases": [
+            {
+              "phase": "UAT",
+              "technical_name": "User Acceptance Testing",
+              "execution_type": "parallel",
+              "objective": "Validação do cliente.",
+              "inputs": [
+                "QA Sign-off",
+                "Deploy em UAT",
+                "Test Scenarios",
+                "Requirements",
+                "Business Rules"
+              ],
+              "main_roles": [
+                "Business Users",
+                "Product Owner",
+                "Business Analyst"
+              ],
+              "outputs": [
+                "UAT Sign-off",
+                "Business Approval",
+                "Lista de ajustes"
+              ]
+            },
+            {
+              "phase": "Bug Fixing",
+              "technical_name": "Defect Resolution",
+              "execution_type": "parallel",
+              "objective": "Correção de defeitos encontrados em QA/UAT.",
+              "inputs": [
+                "Bug Reports",
+                "Defeitos UAT",
+                "Logs",
+                "Resultados QA"
+              ],
+              "main_roles": [
+                "Developers",
+                "QA Engineers",
+                "Tech Lead"
+              ],
+              "outputs": [
+                "Bug Fixes",
+                "Validated Corrections",
+                "Retested Features"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 7,
+          "group_name": "Release And Deployment",
+          "execution_model": "parallel",
+          "description": "Deploy e validação arquitetural do release ocorrem juntos.",
+          "phases": [
+            {
+              "phase": "Deployment",
+              "technical_name": "Release / Go-Live",
+              "execution_type": "parallel",
+              "objective": "Publicação em produção.",
+              "inputs": [
+                "UAT Sign-off",
+                "Release Package",
+                "Deployment Plan",
+                "Rollback Strategy",
+                "Acessos produção"
+              ],
+              "main_roles": [
+                "DevOps Engineer",
+                "Release Manager"
+              ],
+              "outputs": [
+                "Production Deployment",
+                "Release Notes",
+                "Cutover Execution",
+                "Go-Live"
+              ]
+            },
+            {
+              "phase": "Release Architecture",
+              "technical_name": "Release Architecture Validation",
+              "execution_type": "parallel",
+              "objective": "Validar aderência arquitetural do release.",
+              "inputs": [
+                "Release Package",
+                "Arquitetura atual",
+                "Deployment Plan",
+                "Mudanças técnicas"
+              ],
+              "main_roles": [
+                "Solution Architect",
+                "DevOps Engineer",
+                "Release Manager"
+              ],
+              "outputs": [
+                "Rollback Strategy",
+                "Deployment Validation",
+                "Architecture Approval"
+              ]
+            }
+          ]
+        },
+        {
+          "group_order": 8,
+          "group_name": "Post Go-Live",
+          "execution_model": "parallel",
+          "description": "Sustentação, evolução e governança técnica contínua após go-live.",
+          "phases": [
+            {
+              "phase": "Hypercare",
+              "technical_name": "Hypercare / Stabilization",
+              "execution_type": "sequential",
+              "objective": "Suporte intensivo pós go-live.",
+              "inputs": [
+                "Go-Live realizado",
+                "Incidentes iniciais",
+                "Logs produção",
+                "Feedback usuários"
+              ],
+              "main_roles": [
+                "AMS Consultant",
+                "Support Analyst",
+                "Developers"
+              ],
+              "outputs": [
+                "Incident Reports",
+                "Stabilization Reports",
+                "Correções emergenciais"
+              ]
+            },
+            {
+              "phase": "AMS",
+              "technical_name": "AMS / Managed Services",
+              "execution_type": "continuous_parallel",
+              "objective": "Sustentação contínua e melhorias evolutivas.",
+              "inputs": [
+                "Sistema em produção",
+                "Tickets suporte",
+                "Demandas evolutivas",
+                "SLAs acordados"
+              ],
+              "main_roles": [
+                "AMS Consultant",
+                "Support Analyst",
+                "Customer Success Manager"
+              ],
+              "outputs": [
+                "Enhancements",
+                "SLAs",
+                "Continuous Improvements",
+                "Support Reports"
+              ]
+            },
+            {
+              "phase": "Continuous Architecture",
+              "technical_name": "Architecture Governance",
+              "execution_type": "continuous_parallel",
+              "objective": "Governança arquitetural contínua.",
+              "inputs": [
+                "Novas demandas",
+                "Problemas de performance",
+                "Technical Debt",
+                "Roadmap evolutivo"
+              ],
+              "main_roles": [
+                "Solution Architect",
+                "Enterprise Architect",
+                "Tech Lead"
+              ],
+              "outputs": [
+                "Architecture Reviews",
+                "Technical Debt Management",
+                "Evolution Strategy",
+                "Governance Decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
