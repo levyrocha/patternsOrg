@@ -2,5 +2,7 @@ public with sharing class Example1Service extends TriggerBase implements ITrigge
 
     public Example1Service() {}
 
-    public void execute() {}
+    public void execute() {
+        System.debug('#### Example1Service');
+    }
 }
